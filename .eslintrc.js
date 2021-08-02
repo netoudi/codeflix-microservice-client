@@ -22,8 +22,31 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['react', 'import', 'jsx-a11y'],
+  plugins: [
+    'react',
+    'import',
+    'jsx-a11y',
+    '@typescript-eslint',
+    'eslint-plugin-import-helpers',
+    'prettier',
+  ],
   rules: {
+    'import-helpers/order-imports': [
+      'warn',
+      {
+        newlinesBetween: 'always', // new line between groups
+        groups: [
+          '/^react/',
+          'module',
+          '/^components/',
+          '/^pages/',
+          '/^routes/',
+          '/^utils/',
+          ['parent', 'sibling', 'index'],
+        ],
+        alphabetize: { order: 'asc', ignoreCase: true },
+      },
+    ],
     'import/extensions': [
       'error',
       'ignorePackages',
