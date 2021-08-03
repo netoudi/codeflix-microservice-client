@@ -41,6 +41,7 @@ module.exports = {
           '/^components/',
           '/^pages/',
           '/^routes/',
+          '/^static/',
           '/^utils/',
           ['parent', 'sibling', 'index'],
         ],
