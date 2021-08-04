@@ -8,6 +8,8 @@ import MenuAccount from 'components/Menus/MenuAccount';
 import MenuCategories from 'components/Menus/MenuCategories';
 import Notifications from 'components/Notifications';
 
+import useIsSmallWindow from 'hooks/useIsSmallWindow';
+
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
@@ -16,20 +18,25 @@ const useStyles = makeStyles(() => ({
 
 const Navbar: React.FunctionComponent = () => {
   const classes = useStyles();
+  const isSmallWindow = useIsSmallWindow();
 
   return (
     <div className={classes.root}>
       <AppBar position="fixed">
         <Toolbar>
-          <MenuCategories />
+          {!isSmallWindow && <MenuCategories />}
           <Logo />
-          <Grid container justify="center">
-            <Grid item xs={8} lg={7}>
-              <InputSearch />
-            </Grid>
-          </Grid>
-          <Notifications />
-          <MenuAccount />
+          {!isSmallWindow && (
+            <>
+              <Grid container justify="center">
+                <Grid item xs={8} lg={7}>
+                  <InputSearch />
+                </Grid>
+              </Grid>
+              <Notifications />
+              <MenuAccount />
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </div>
