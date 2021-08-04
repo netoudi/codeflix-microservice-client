@@ -39,6 +39,7 @@ module.exports = {
           '/^react/',
           'module',
           '/^components/',
+          '/^hooks/',
           '/^pages/',
           '/^routes/',
           '/^static/',

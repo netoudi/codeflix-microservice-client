@@ -10,17 +10,10 @@ import {
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 
+import useMenu from 'hooks/useMenu';
+
 const MenuAccount: React.FunctionComponent = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-
-  const handleOpen = (event: any) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const { open, anchorEl, handleOpen, handleClose } = useMenu();
 
   return (
     <div>

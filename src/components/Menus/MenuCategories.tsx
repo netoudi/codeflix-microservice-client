@@ -9,6 +9,8 @@ import {
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import useMenu from 'hooks/useMenu';
+
 import routes, { MyRouteProps } from 'routes';
 
 const listRoutes = {
@@ -20,16 +22,7 @@ const menuRoutes = routes.filter((route) =>
 );
 
 const MenuCategories: React.FunctionComponent = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-
-  const handleOpen = (event: any) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const { open, anchorEl, handleOpen, handleClose } = useMenu();
 
   return (
     <div>
