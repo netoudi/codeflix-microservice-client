@@ -2,6 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import { CssBaseline, MuiThemeProvider } from '@material-ui/core';
 
+import DialogSearchProvider from 'components/DialogSearch/DialogSearchProvider';
 import Navbar from 'components/Navbar';
 
 import AppRouter from 'routes/AppRouter';
@@ -13,8 +14,10 @@ function App() {
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
       <BrowserRouter>
-        <Navbar />
-        <AppRouter />
+        <DialogSearchProvider>
+          <Navbar />
+          <AppRouter />
+        </DialogSearchProvider>
       </BrowserRouter>
     </MuiThemeProvider>
   );

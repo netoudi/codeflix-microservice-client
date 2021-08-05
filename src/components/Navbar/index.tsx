@@ -1,7 +1,15 @@
 import React from 'react';
 
-import { AppBar, Grid, makeStyles, Toolbar } from '@material-ui/core';
+import {
+  AppBar,
+  Grid,
+  IconButton,
+  makeStyles,
+  Toolbar,
+} from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
 
+import DialogSearchContext from 'components/DialogSearch/DialogSearchContext';
 import InputSearch from 'components/InputSearch';
 import Logo from 'components/Logo';
 import MenuAccount from 'components/Menus/MenuAccount';
@@ -19,6 +27,11 @@ const useStyles = makeStyles(() => ({
 const Navbar: React.FunctionComponent = () => {
   const classes = useStyles();
   const isSmallWindow = useIsSmallWindow();
+  const dialogContext = React.useContext(DialogSearchContext);
+
+  const handleOpen = React.useCallback(() => {
+    dialogContext.show();
+  }, [dialogContext]);
 
   return (
     <div className={classes.root}>
@@ -36,6 +49,13 @@ const Navbar: React.FunctionComponent = () => {
               <Notifications />
               <MenuAccount />
             </>
+          )}
+          {isSmallWindow && (
+            <Grid container justify="flex-end">
+              <IconButton onClick={handleOpen}>
+                <SearchIcon />
+              </IconButton>
+            </Grid>
           )}
         </Toolbar>
       </AppBar>
