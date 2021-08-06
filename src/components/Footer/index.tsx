@@ -1,4 +1,5 @@
 import React from 'react';
+import { matchPath, useHistory, useLocation } from 'react-router-dom';
 
 import { AppBar, BottomNavigation, makeStyles } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
@@ -9,6 +10,8 @@ import PersonIcon from '@material-ui/icons/Person';
 import DialogMyAccount from 'components/DialogMyAccount';
 import FooterItem from 'components/Footer/FooterItem';
 
+import routes from 'routes';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -18,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     top: 'auto',
     borderTop: `1px solid ${theme.palette.text.secondary}`,
+    height: '48px',
   },
   bottomNavigation: {
     backgroundColor: 'inherit',
@@ -28,6 +32,17 @@ const Footer: React.FunctionComponent = () => {
   const classes = useStyles();
 
   const [openDialogMyAccount, setOpenDialogMyAccount] = React.useState(false);
+
+  const { push } = useHistory();
+  const { pathname } = useLocation();
+
+  const currentRoute = React.useMemo(() => {
+    return routes.find((r) => matchPath(pathname, r))?.name;
+  }, [pathname]);
+
+  const gotToHome = React.useCallback(() => {
+    push('/');
+  }, [push]);
 
   const onClickMyAccount = React.useCallback(() => {
     setOpenDialogMyAccount(true);
@@ -46,12 +61,17 @@ const Footer: React.FunctionComponent = () => {
         position="fixed"
         color="primary"
       >
-        <BottomNavigation className={classes.bottomNavigation} showLabels>
+        <BottomNavigation
+          className={classes.bottomNavigation}
+          showLabels
+          value={currentRoute}
+        >
           <FooterItem label="Home" value="home" icon={<HomeIcon />} />
           <FooterItem
             label="Categories"
             value="categories"
             icon={<ListIcon />}
+            onClick={gotToHome}
           />
           <FooterItem
             label="Notifications"
