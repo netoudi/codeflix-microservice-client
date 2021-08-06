@@ -3,11 +3,11 @@ import { matchPath, useHistory, useLocation } from 'react-router-dom';
 
 import { AppBar, BottomNavigation, makeStyles } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
-import ListIcon from '@material-ui/icons/List';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import PersonIcon from '@material-ui/icons/Person';
 
 import DialogMyAccount from 'components/DialogMyAccount';
+import FooterCategoriesItem from 'components/Footer/FooterCategoriesItem';
 import FooterItem from 'components/Footer/FooterItem';
 
 import routes from 'routes';
@@ -66,13 +66,13 @@ const Footer: React.FunctionComponent = () => {
           showLabels
           value={currentRoute}
         >
-          <FooterItem label="Home" value="home" icon={<HomeIcon />} />
           <FooterItem
-            label="Categories"
-            value="categories"
-            icon={<ListIcon />}
+            label="Home"
+            value="home"
+            icon={<HomeIcon />}
             onClick={gotToHome}
           />
+          <FooterCategoriesItem currentroute={currentRoute} />
           <FooterItem
             label="Notifications"
             value="notifications"
