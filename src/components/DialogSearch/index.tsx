@@ -14,9 +14,6 @@ import InputSearch from 'components/InputSearch';
 import TransitionSlide from 'components/Transitions/TransitionSlide';
 
 const useStyles = makeStyles(() => ({
-  root: {
-    display: 'flex',
-  },
   iconButtonRoot: {
     borderRadius: 0,
     paddingTop: '8px',
