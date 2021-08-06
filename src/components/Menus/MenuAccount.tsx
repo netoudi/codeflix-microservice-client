@@ -12,6 +12,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import { menuTheme } from 'theme';
 
+import UserInformation from 'components/UserInformation';
+
 import useMenu from 'hooks/useMenu';
 
 const MenuAccount: React.FunctionComponent = () => {
@@ -31,7 +33,7 @@ const MenuAccount: React.FunctionComponent = () => {
           onClick={handleOpen}
           style={{ cursor: 'pointer' }}
         >
-          Username
+          <UserInformation />
           <ArrowDownIcon />
         </Box>
 

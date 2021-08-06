@@ -6,6 +6,7 @@ import ListIcon from '@material-ui/icons/List';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import PersonIcon from '@material-ui/icons/Person';
 
+import DialogMyAccount from 'components/DialogMyAccount';
 import FooterItem from 'components/Footer/FooterItem';
 
 const useStyles = makeStyles((theme) => ({
@@ -25,6 +26,16 @@ const useStyles = makeStyles((theme) => ({
 
 const Footer: React.FunctionComponent = () => {
   const classes = useStyles();
+
+  const [openDialogMyAccount, setOpenDialogMyAccount] = React.useState(false);
+
+  const onClickMyAccount = React.useCallback(() => {
+    setOpenDialogMyAccount(true);
+  }, []);
+
+  const onDialogMyAccountClose = React.useCallback(() => {
+    setOpenDialogMyAccount(false);
+  }, []);
 
   return (
     <div className={classes.root}>
@@ -47,9 +58,18 @@ const Footer: React.FunctionComponent = () => {
             value="notifications"
             icon={<NotificationsIcon />}
           />
-          <FooterItem label="Profile" value="profile" icon={<PersonIcon />} />
+          <FooterItem
+            label="Profile"
+            value="profile"
+            icon={<PersonIcon />}
+            onClick={onClickMyAccount}
+          />
         </BottomNavigation>
       </AppBar>
+      <DialogMyAccount
+        open={openDialogMyAccount}
+        onClose={onDialogMyAccountClose}
+      />
     </div>
   );
 };
