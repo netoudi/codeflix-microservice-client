@@ -10,6 +10,7 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 
 import DialogSearchContext from 'components/DialogSearch/DialogSearchContext';
+import HideOnScroll from 'components/HideOnScroll';
 import InputSearch from 'components/InputSearch';
 import Logo from 'components/Logo';
 import MenuAccount from 'components/Menus/MenuAccount';
@@ -35,30 +36,32 @@ const Navbar: React.FunctionComponent = () => {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed">
-        <Toolbar>
-          {!isSmallWindow && <MenuCategories />}
-          <Logo />
-          {!isSmallWindow && (
-            <>
-              <Grid container justify="center">
-                <Grid item xs={8} lg={7}>
-                  <InputSearch />
+      <HideOnScroll>
+        <AppBar position="fixed">
+          <Toolbar>
+            {!isSmallWindow && <MenuCategories />}
+            <Logo />
+            {!isSmallWindow && (
+              <>
+                <Grid container justify="center">
+                  <Grid item xs={8} lg={7}>
+                    <InputSearch />
+                  </Grid>
                 </Grid>
+                <Notifications />
+                <MenuAccount />
+              </>
+            )}
+            {isSmallWindow && (
+              <Grid container justify="flex-end">
+                <IconButton onClick={handleOpen}>
+                  <SearchIcon />
+                </IconButton>
               </Grid>
-              <Notifications />
-              <MenuAccount />
-            </>
-          )}
-          {isSmallWindow && (
-            <Grid container justify="flex-end">
-              <IconButton onClick={handleOpen}>
-                <SearchIcon />
-              </IconButton>
-            </Grid>
-          )}
-        </Toolbar>
-      </AppBar>
+            )}
+          </Toolbar>
+        </AppBar>
+      </HideOnScroll>
     </div>
   );
 };
