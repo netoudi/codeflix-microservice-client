@@ -2,7 +2,7 @@ import React from 'react';
 import Slider, { Settings } from 'react-slick';
 
 import Page from 'components/Page';
-import SliderArrowUnstyled from 'components/Slider/SliderArrowUnstyled';
+import SliderArrow from 'components/Slider/SliderArrow';
 import VideoThumbnail from 'components/Video/VideoThumbnail';
 
 import banner from 'static/img/the_matrix_banner.jpg';
@@ -17,8 +17,8 @@ const Home: React.FunctionComponent = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: true,
-    prevArrow: <SliderArrowUnstyled dir="left" />,
-    nextArrow: <SliderArrowUnstyled dir="right" />,
+    prevArrow: <SliderArrow dir="left" />,
+    nextArrow: <SliderArrow dir="right" />,
   };
 
   return (
