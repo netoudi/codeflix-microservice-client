@@ -1,7 +1,7 @@
 import React from 'react';
-import Slider, { Settings } from 'react-slick';
 
 import Page from 'components/Page';
+import Slider, { SliderProps } from 'components/Slider';
 import SliderArrow from 'components/Slider/SliderArrow';
 import VideoThumbnail from 'components/Video/VideoThumbnail';
 
@@ -10,7 +10,7 @@ import banner from 'static/img/the_matrix_banner.jpg';
 import { range } from 'utils';
 
 const Home: React.FunctionComponent = () => {
-  const settings: Settings = {
+  const settings: SliderProps = {
     dots: true,
     infinite: true,
     speed: 500,

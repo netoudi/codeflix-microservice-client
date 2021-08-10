@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
       position: 'absolute' as any,
       display: 'flex',
       zIndex: 999,
+      opacity: 0,
     };
 
     if (props.dir === 'right') {
