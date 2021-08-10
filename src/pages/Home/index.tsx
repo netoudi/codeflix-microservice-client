@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core';
 import Page from 'components/Page';
 import Slider, { SliderProps } from 'components/Slider';
 import SliderArrow from 'components/Slider/SliderArrow';
-import VideoThumbnail, { getImageSizes } from 'components/Video/VideoThumbnail';
+import VideoThumbnail from 'components/Video/VideoThumbnail';
 
 import useIsSmallWindow from 'hooks/useIsSmallWindow';
 
@@ -15,9 +15,33 @@ import bannerHalf from 'static/img/the_matrix_thumb.jpg';
 import { range } from 'utils';
 
 const useStyles = makeStyles((theme) => ({
+  rootImage: {
+    marginRight: '4px',
+    '&:focus': {
+      outlineColor: theme.palette.text.primary,
+    },
+  },
+  image: {
+    [theme.breakpoints.down(400)]: {
+      width: '300px',
+      height: '169px',
+    },
+    [theme.breakpoints.up(400)]: {
+      width: '350px',
+      height: '197px',
+    },
+    [theme.breakpoints.up(700)]: {
+      width: '650px',
+      height: '366px',
+    },
+    [theme.breakpoints.up(1200)]: {
+      width: '1150px',
+      height: '647px',
+    },
+  },
   get slider() {
     return Object.fromEntries(
-      Object.entries(getImageSizes(theme)).map((size) => {
+      Object.entries(this.image).map((size) => {
         return [
           size[0],
           {
@@ -60,7 +84,10 @@ const Home: React.FunctionComponent = () => {
       <Slider {...sliderProps}>
         {range(1, 5).map((item) => (
           <div key={item}>
-            <VideoThumbnail ImgProps={{ src: thumbnail }} />
+            <VideoThumbnail
+              classes={{ root: classes.rootImage, image: classes.image }}
+              ImgProps={{ src: thumbnail }}
+            />
           </div>
         ))}
       </Slider>

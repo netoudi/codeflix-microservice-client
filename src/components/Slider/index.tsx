@@ -20,7 +20,7 @@ const Slider: React.FunctionComponent<SliderProps> = (props) => {
   const className = clsx(classes.root, other.className);
 
   return (
-    <ReactSlider className={className} {...other}>
+    <ReactSlider {...other} className={className}>
       {children}
     </ReactSlider>
   );
