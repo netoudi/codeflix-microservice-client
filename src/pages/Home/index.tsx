@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core';
 import Page from 'components/Page';
 import Slider, { SliderProps } from 'components/Slider';
 import SliderArrow from 'components/Slider/SliderArrow';
+import Rating from 'components/Video/Rating';
 import VideoThumbnail from 'components/Video/VideoThumbnail';
 
 import useIsSmallWindow from 'hooks/useIsSmallWindow';
@@ -91,6 +92,11 @@ const Home: React.FunctionComponent = () => {
           </div>
         ))}
       </Slider>
+      <Rating rating="L" />
+      <Rating rating="10" />
+      <Rating rating="14" />
+      <Rating rating="16" />
+      <Rating rating="18" />
     </Page>
   );
 };
