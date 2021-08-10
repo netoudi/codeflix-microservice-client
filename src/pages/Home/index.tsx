@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core';
 import Page from 'components/Page';
 import Slider, { SliderProps } from 'components/Slider';
 import SliderArrow from 'components/Slider/SliderArrow';
+import Category from 'components/Video/Category';
 import Rating from 'components/Video/Rating';
 import VideoThumbnail from 'components/Video/VideoThumbnail';
 
@@ -97,6 +98,8 @@ const Home: React.FunctionComponent = () => {
       <Rating rating="14" />
       <Rating rating="16" />
       <Rating rating="18" />
+      <Category>Movies</Category>
+      <Category>Documentaries</Category>
     </Page>
   );
 };
