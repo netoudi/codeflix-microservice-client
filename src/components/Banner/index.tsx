@@ -2,6 +2,7 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core';
 
+import BannerRating from 'components/Banner/BannerRating';
 import Slider, { SliderProps } from 'components/Slider';
 import SliderArrow from 'components/Slider/SliderArrow';
 import Category from 'components/Video/Category';
@@ -17,6 +18,7 @@ import { range } from 'utils';
 
 const useStyles = makeStyles((theme) => ({
   rootImage: {
+    position: 'relative',
     marginRight: '4px',
     '&:focus': {
       outlineColor: theme.palette.text.primary,
@@ -88,7 +90,9 @@ const Banner: React.FunctionComponent = () => {
             <VideoThumbnail
               classes={{ root: classes.rootImage, image: classes.image }}
               ImgProps={{ src: thumbnail }}
-            />
+            >
+              <BannerRating rating="14" />
+            </VideoThumbnail>
           </div>
         ))}
       </Slider>
