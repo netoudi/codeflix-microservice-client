@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core';
 
 import BannerCategory from 'components/Banner/BannerCategory';
 import BannerRating from 'components/Banner/BannerRating';
+import VideoActions from 'components/Banner/VideoActions';
 import Slider, { SliderProps } from 'components/Slider';
 import SliderArrow from 'components/Slider/SliderArrow';
 import Category from 'components/Video/Category';
@@ -95,6 +96,7 @@ const Banner: React.FunctionComponent = () => {
             >
               <BannerCategory>Movie</BannerCategory>
               <BannerRating rating="14" />
+              <VideoActions />
             </VideoThumbnail>
           </div>
         ))}
