@@ -11,6 +11,7 @@ import Category from 'components/Video/Category';
 import Rating from 'components/Video/Rating';
 import VideoLink from 'components/Video/VideoLink';
 import VideoThumbnail from 'components/Video/VideoThumbnail';
+import VideoTitle from 'components/Video/VideoTitle';
 
 import useIsSmallWindow from 'hooks/useIsSmallWindow';
 
@@ -109,6 +110,7 @@ const Banner: React.FunctionComponent = () => {
       <Category>Movies</Category>
       <Category>Documentaries</Category>
       <VideoLink>Details</VideoLink>
+      <VideoTitle>The Matrix</VideoTitle>
     </>
   );
 };
