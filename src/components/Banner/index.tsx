@@ -3,6 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core';
 
 import BannerRating from 'components/Banner/BannerRating';
+import SliderStepper from 'components/Banner/SliderStepper';
 import VideoActionsMobile from 'components/Banner/VideoActions/VideoActionsMobile';
 import VideoContent from 'components/Banner/VideoContent';
 import Slider, { SliderProps } from 'components/Slider';
@@ -114,6 +115,7 @@ const Banner: React.FunctionComponent = () => {
         ))}
       </Slider>
       <VideoActionsMobile />
+      {!isSmallWindow && <SliderStepper maxSteps={5} activeStep={0} />}
       <Rating rating="L" />
       <Rating rating="10" />
       <Rating rating="14" />
