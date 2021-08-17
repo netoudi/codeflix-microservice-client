@@ -4,12 +4,13 @@ import {
   BottomNavigation,
   BottomNavigationAction,
   makeStyles,
+  useMediaQuery,
+  useTheme,
 } from '@material-ui/core';
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import InfoIcon from '@material-ui/icons/Info';
 import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
-
-import useIsSmallWindow from 'hooks/useIsSmallWindow';
+import { BANNER_VIDEO_ACTIONS_MEDIA_QUERY } from 'theme';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,9 +25,12 @@ const useStyles = makeStyles((theme) => ({
 
 const VideoActionsMobile: React.FunctionComponent = () => {
   const classes = useStyles();
-  const isSmallWindow = useIsSmallWindow();
+  const theme = useTheme();
+  const isDown700 = useMediaQuery(
+    theme.breakpoints.down(BANNER_VIDEO_ACTIONS_MEDIA_QUERY)
+  );
 
-  return isSmallWindow ? (
+  return isDown700 ? (
     <BottomNavigation className={classes.root} showLabels>
       <BottomNavigationAction
         className={classes.navigationAction}

@@ -1,12 +1,11 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core';
+import { makeStyles, useMediaQuery, useTheme } from '@material-ui/core';
+import { BANNER_VIDEO_ACTIONS_MEDIA_QUERY } from 'theme';
 
+import BannerCategory from 'components/Banner/BannerCategory';
 import VideoActions from 'components/Banner/VideoActions';
-import Category from 'components/Video/Category';
 import VideoTitle from 'components/Video/VideoTitle';
-
-import useIsSmallWindow from 'hooks/useIsSmallWindow';
 
 import { Video } from 'utils/models';
 
@@ -29,27 +28,22 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '2.5em',
     },
   },
-  category: {
-    fontSize: '1.4em',
-    borderBottomWidth: '2px',
-    [theme.breakpoints.up('lg')]: {
-      fontSize: '1.6em',
-      borderBottomWidth: '5px',
-    },
-  },
 }));
 
 const VideoContent: React.FunctionComponent<VideoContentProps> = (props) => {
   const { video } = props;
   const classes = useStyles();
-  const isSmallWindow = useIsSmallWindow();
+  const theme = useTheme();
+  const isUp700 = useMediaQuery(
+    theme.breakpoints.up(BANNER_VIDEO_ACTIONS_MEDIA_QUERY)
+  );
 
   return (
     <div className={classes.root}>
-      <Category className={classes.category}>
+      <BannerCategory>
         {video.categories.map((c) => c.name).join(' / ')}
-      </Category>
-      {!isSmallWindow && (
+      </BannerCategory>
+      {isUp700 && (
         <>
           <VideoTitle className={classes.title}>{video.title}</VideoTitle>
           <VideoActions />
