@@ -1,6 +1,9 @@
 import React from 'react';
 
 import { makeStyles } from '@material-ui/core';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
+import InfoIcon from '@material-ui/icons/Info';
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 
 import VideoLink from 'components/Video/VideoLink';
 
@@ -18,9 +21,18 @@ const VideoActions: React.FunctionComponent = () => {
 
   return (
     <div className={classes.root}>
-      <VideoLink>Play</VideoLink>
-      <VideoLink>Wishlist</VideoLink>
-      <VideoLink>Details</VideoLink>
+      <VideoLink>
+        <PlayCircleOutlineIcon />
+        Play
+      </VideoLink>
+      <VideoLink>
+        <AddCircleOutlineIcon />
+        My List
+      </VideoLink>
+      <VideoLink>
+        <InfoIcon />
+        Details
+      </VideoLink>
     </div>
   );
 };

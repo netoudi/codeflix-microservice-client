@@ -6,6 +6,8 @@ import VideoActions from 'components/Banner/VideoActions';
 import Category from 'components/Video/Category';
 import VideoTitle from 'components/Video/VideoTitle';
 
+import useIsSmallWindow from 'hooks/useIsSmallWindow';
+
 import { Video } from 'utils/models';
 
 export interface VideoContentProps {
@@ -40,14 +42,19 @@ const useStyles = makeStyles((theme) => ({
 const VideoContent: React.FunctionComponent<VideoContentProps> = (props) => {
   const { video } = props;
   const classes = useStyles();
+  const isSmallWindow = useIsSmallWindow();
 
   return (
     <div className={classes.root}>
       <Category className={classes.category}>
         {video.categories.map((c) => c.name).join(' / ')}
       </Category>
-      <VideoTitle className={classes.title}>{video.title}</VideoTitle>
-      <VideoActions />
+      {!isSmallWindow && (
+        <>
+          <VideoTitle className={classes.title}>{video.title}</VideoTitle>
+          <VideoActions />
+        </>
+      )}
     </div>
   );
 };

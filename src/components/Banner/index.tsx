@@ -3,6 +3,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core';
 
 import BannerRating from 'components/Banner/BannerRating';
+import VideoActionsMobile from 'components/Banner/VideoActions/VideoActionsMobile';
 import VideoContent from 'components/Banner/VideoContent';
 import Slider, { SliderProps } from 'components/Slider';
 import SliderArrow from 'components/Slider/SliderArrow';
@@ -112,6 +113,7 @@ const Banner: React.FunctionComponent = () => {
           </div>
         ))}
       </Slider>
+      <VideoActionsMobile />
       <Rating rating="L" />
       <Rating rating="10" />
       <Rating rating="14" />
