@@ -67,6 +67,7 @@ const Banner: React.FunctionComponent = () => {
   const classes = useStyles();
   const classSlider = classes.slider;
   const isSmallWindow = useIsSmallWindow();
+  const [activeIndex, setActiveIndex] = React.useState(0);
 
   const sliderProps: SliderProps = React.useMemo(
     () => ({
@@ -81,6 +82,9 @@ const Banner: React.FunctionComponent = () => {
       arrows: !isSmallWindow,
       prevArrow: <SliderArrow dir="left" />,
       nextArrow: <SliderArrow dir="right" />,
+      beforeChange(currentSlide: number, nextSlide: number) {
+        setActiveIndex(nextSlide);
+      },
     }),
     [classSlider, isSmallWindow]
   );
@@ -90,32 +94,38 @@ const Banner: React.FunctionComponent = () => {
   return (
     <>
       <Slider {...sliderProps}>
-        {range(1, 5).map((item) => (
+        {range(1, 5).map((item, index) => (
           <div key={item}>
             <VideoThumbnail
               classes={{ root: classes.rootImage, image: classes.image }}
               ImgProps={{ src: thumbnail }}
             >
-              <VideoContent
-                video={{
-                  id: '1000',
-                  title: 'The Matrix',
-                  categories: [
-                    {
-                      id: '2000',
-                      name: 'Movies',
-                      is_active: true,
-                    },
-                  ],
-                }}
-              />
-              <BannerRating rating="14" />
+              {index === activeIndex && (
+                <>
+                  <VideoContent
+                    video={{
+                      id: '1000',
+                      title: 'The Matrix',
+                      categories: [
+                        {
+                          id: '2000',
+                          name: 'Movies',
+                          is_active: true,
+                        },
+                      ],
+                    }}
+                  />
+                  <BannerRating rating="14" />
+                </>
+              )}
             </VideoThumbnail>
           </div>
         ))}
       </Slider>
       <VideoActionsMobile />
-      {!isSmallWindow && <SliderStepper maxSteps={5} activeStep={0} />}
+      {!isSmallWindow && (
+        <SliderStepper maxSteps={5} activeStep={activeIndex} />
+      )}
       <Rating rating="L" />
       <Rating rating="10" />
       <Rating rating="14" />
