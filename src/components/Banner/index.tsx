@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { MutableRefObject } from 'react';
+import ReactSlider, { Settings } from 'react-slick';
 
 import { makeStyles } from '@material-ui/core';
 
 import BannerRating from 'components/Banner/BannerRating';
+import BannerStepper from 'components/Banner/BannerStepper';
 import SliderStepper from 'components/Banner/SliderStepper';
 import VideoActionsMobile from 'components/Banner/VideoActions/VideoActionsMobile';
 import VideoContent from 'components/Banner/VideoContent';
-import Slider, { SliderProps } from 'components/Slider';
+import Slider from 'components/Slider';
 import SliderArrow from 'components/Slider/SliderArrow';
 import Category from 'components/Video/Category';
 import Rating from 'components/Video/Rating';
@@ -28,6 +30,11 @@ const useStyles = makeStyles((theme) => ({
     '&:focus': {
       outlineColor: theme.palette.text.primary,
     },
+  },
+  bannerStepper: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
   },
   image: {
     [theme.breakpoints.down(400)]: {
@@ -68,8 +75,9 @@ const Banner: React.FunctionComponent = () => {
   const classSlider = classes.slider;
   const isSmallWindow = useIsSmallWindow();
   const [activeIndex, setActiveIndex] = React.useState(0);
+  const sliderRef = React.useRef() as MutableRefObject<ReactSlider>;
 
-  const sliderProps: SliderProps = React.useMemo(
+  const sliderProps: Settings = React.useMemo(
     () => ({
       className: classSlider,
       centerMode: true,
@@ -91,9 +99,15 @@ const Banner: React.FunctionComponent = () => {
 
   const thumbnail = isSmallWindow ? bannerHalf : banner;
 
+  const handleClick = (step: number) => {
+    console.log(step);
+    setActiveIndex(step);
+    sliderRef.current.slickGoTo(step);
+  };
+
   return (
     <>
-      <Slider {...sliderProps}>
+      <Slider ref={sliderRef} settings={sliderProps}>
         {range(1, 5).map((item, index) => (
           <div key={item}>
             <VideoThumbnail
@@ -126,6 +140,13 @@ const Banner: React.FunctionComponent = () => {
       {!isSmallWindow && (
         <SliderStepper maxSteps={5} activeStep={activeIndex} />
       )}
+      <div className={classes.bannerStepper}>
+        <BannerStepper
+          maxSteps={5}
+          activeStep={activeIndex}
+          onClick={handleClick}
+        />
+      </div>
       <Rating rating="L" />
       <Rating rating="10" />
       <Rating rating="14" />

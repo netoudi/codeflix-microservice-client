@@ -12,18 +12,22 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export type SliderProps = Settings;
+export interface SliderProps {
+  className?: string;
+  settings: Settings;
+  children: React.ReactNode;
+}
 
-const Slider: React.FunctionComponent<SliderProps> = (props) => {
-  const { children, ...other } = props;
+const Slider = React.forwardRef<any, SliderProps>((props, ref) => {
+  const { className, settings, children, ...other } = props;
   const classes = useStyles();
-  const className = clsx(classes.root, other.className);
+  const classRoot = clsx(classes.root, className);
 
   return (
-    <ReactSlider {...other} className={className}>
+    <ReactSlider ref={ref} {...settings} {...other} className={classRoot}>
       {children}
     </ReactSlider>
   );
-};
+});
 
 export default Slider;
