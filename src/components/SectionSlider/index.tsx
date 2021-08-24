@@ -1,16 +1,11 @@
 import React from 'react';
 import { Settings } from 'react-slick';
 
-import {
-  makeStyles,
-  Theme,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from '@material-ui/core';
+import { makeStyles, Theme, useMediaQuery, useTheme } from '@material-ui/core';
 
 import Slider from 'components/Slider';
 import SliderArrow from 'components/Slider/SliderArrow';
+import Title from 'components/Title';
 import VideoThumbnail from 'components/Video/VideoThumbnail';
 
 import useIsSmallWindow from 'hooks/useIsSmallWindow';
@@ -21,30 +16,7 @@ import bannerThumbnail from 'static/img/the_matrix_poster.jpg';
 import { range } from 'utils';
 import { Video } from 'utils/models';
 
-const useSectionTitleStyles = makeStyles((theme: Theme) => ({
-  root: {
-    fontsize: '1.4em',
-    fontWeight: 600,
-    textTransform: 'uppercase',
-    borderBottom: `1px solid ${theme.palette.text.secondary}`,
-    margin: theme.spacing(3, 3),
-    [theme.breakpoints.down(theme.breakpoints.values.mobile)]: {
-      margin: theme.spacing(2, 1),
-    },
-  },
-}));
-
-export const SectionTitle: React.FunctionComponent = (props) => {
-  const classes = useSectionTitleStyles();
-
-  return (
-    <Typography className={classes.root} component="h2" color="textSecondary">
-      {props.children}
-    </Typography>
-  );
-};
-
-const useSectionSliderStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   root: {
     margin: theme.spacing(0, 3),
     [theme.breakpoints.down(theme.breakpoints.values.mobile)]: {
@@ -66,7 +38,7 @@ export interface SectionSliderProps {
 
 const SectionSlider: React.FunctionComponent<SectionSliderProps> = (props) => {
   const { title } = props;
-  const classes = useSectionSliderStyles();
+  const classes = useStyles();
   const isSmallWindow = useIsSmallWindow();
 
   const sliderProps: Settings = React.useMemo(
@@ -90,7 +62,7 @@ const SectionSlider: React.FunctionComponent<SectionSliderProps> = (props) => {
 
   return (
     <section>
-      <SectionTitle>{title}</SectionTitle>
+      <Title>{title}</Title>
       <div className={classes.root}>
         <Slider settings={sliderProps}>
           {range(1, 5).map((item, index) => (
