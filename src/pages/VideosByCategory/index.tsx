@@ -1,7 +1,14 @@
 import React from 'react';
 
+import Page from 'components/Page';
+import VideoList from 'components/Video/VideoList';
+
 const VideosByCategory: React.FunctionComponent = () => {
-  return <h1>VideosByCategory</h1>;
+  return (
+    <Page>
+      <VideoList videos={[]} />
+    </Page>
+  );
 };
 
 export default VideosByCategory;
